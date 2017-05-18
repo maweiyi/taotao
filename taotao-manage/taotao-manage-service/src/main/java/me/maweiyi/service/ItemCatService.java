@@ -15,7 +15,7 @@ import java.util.List;
 @Service
 public class ItemCatService extends BaseService<ItemCat> {
 
-    @Autowired
+    /*@Autowired
     private ItemCatMapper itemCatMapper;
 
 
@@ -23,7 +23,7 @@ public class ItemCatService extends BaseService<ItemCat> {
     public Mapper<ItemCat> getMapper() {
 
         return this.itemCatMapper;
-    }
+    }*/
 
     /**
      * 根据父id查询商品类目

@@ -5,7 +5,10 @@ import com.github.abel533.mapper.Mapper;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import me.maweiyi.pojo.BasePojo;
+import org.apache.commons.lang3.StringUtils;
+import org.springframework.beans.factory.annotation.Autowired;
 
+import java.lang.reflect.Field;
 import java.lang.reflect.ParameterizedType;
 import java.lang.reflect.Type;
 import java.util.Date;
@@ -16,7 +19,12 @@ import java.util.List;
  */
 public abstract class BaseService<T extends BasePojo> {
 
-    public abstract Mapper<T> getMapper();
+
+    @Autowired
+    private Mapper<T> mapper;
+    public Mapper<T> getMapper() {
+        return this.mapper;
+    };
 
     private Class<T> clazz;
 
@@ -89,6 +97,36 @@ public abstract class BaseService<T extends BasePojo> {
         Example example = new Example(this.clazz);
         example.createCriteria().andIn("id", ids);
         return this.getMapper().deleteByExample(example);
+    }
+
+    public PageInfo<T> queryByPage(T t, Integer page, Integer rows, String order) throws IllegalAccessException {
+        PageHelper.startPage(page, rows);
+        Example example = new Example(this.clazz);
+
+        if (StringUtils.isNotBlank(order)) {
+            example.setOrderByClause(order);
+        }
+
+        if (t == null) {
+            List<T> list = this.mapper.selectByExample(example);
+            PageInfo<T> pageInfo = new PageInfo<T>(list);
+            return pageInfo;
+        }
+
+        Example.Criteria criteria = example.createCriteria();
+        Field[] fields = t.getClass().getDeclaredFields();
+
+        for (Field field : fields) {
+            field.setAccessible(true);
+            if (field.get(t) != null) {
+                criteria.andEqualTo(field.getName(), field.get(t));
+
+            }
+        }
+
+        List<T> list = this.mapper.selectByExample(example);
+        PageInfo<T> pageInfo = new PageInfo<T>(list);
+        return pageInfo;
     }
 
 

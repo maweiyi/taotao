@@ -28,6 +28,7 @@ hs_err_pid*
 # User-specific stuff:
 .idea/
 **/target
+**/logs
 .idea/**/tasks.xml
 .idea/dictionaries
 
