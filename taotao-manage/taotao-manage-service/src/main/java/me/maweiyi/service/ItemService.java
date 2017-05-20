@@ -6,6 +6,7 @@ import com.github.pagehelper.PageInfo;
 import me.maweiyi.mapper.ItemMapper;
 import me.maweiyi.pojo.Item;
 import me.maweiyi.pojo.ItemDesc;
+import me.maweiyi.pojo.ItemParamItem;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -22,9 +23,12 @@ public class ItemService extends BaseService<Item> {
     private ItemDescService itemDescService;
 
     @Autowired
+    private ItemParamItemService itemParamItemService;
+
+    @Autowired
     private ItemMapper mapper;
 
-    public void saveItem(Item item, String desc) {
+    public void saveItem(Item item, String desc, String paramData) {
         item.setId(null);
         item.setStatus(1);
         super.save(item);
@@ -35,6 +39,12 @@ public class ItemService extends BaseService<Item> {
         itemDesc.setItemDesc(desc);
 
         this.itemDescService.save(itemDesc);
+
+        ItemParamItem itemParamItem = new ItemParamItem();
+        itemParamItem.setId(null);
+        itemParamItem.setItemId(item.getId());
+        itemParamItem.setParamData(paramData);
+        this.itemParamItemService.save(itemParamItem);
     }
 
     public PageInfo<Item> queryItemListByPage(Integer page, Integer rows) {
@@ -55,5 +65,14 @@ public class ItemService extends BaseService<Item> {
 
         }
         return pageInfo;
+    }
+
+    public void updateItem(Item item, String desc) {
+        super.updateByIdSelective(item);
+
+        ItemDesc itemDesc = new ItemDesc();
+        itemDesc.setItemId(item.getId());
+        itemDesc.setItemDesc(desc);
+        this.itemDescService.updateByIdSelective(itemDesc);
     }
 }

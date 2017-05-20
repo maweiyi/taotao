@@ -11,6 +11,7 @@
     <modules>
         <module>taotao-manage</module>
         <module>taotao-common</module>
+        <module>taotao-web</module>
     </modules>
 
     <properties>

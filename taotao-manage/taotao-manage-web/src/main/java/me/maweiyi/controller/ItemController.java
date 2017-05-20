@@ -28,11 +28,11 @@ public class ItemController {
     private ItemService itemService;
 
     @RequestMapping(method = RequestMethod.POST)
-    public ResponseEntity<Void> saveItem(Item item, @RequestParam("desc") String desc) {
+    public ResponseEntity<Void> saveItem(Item item, @RequestParam("desc") String desc, @RequestParam("itemParams") String paramData) {
 
         try {
 
-            this.itemService.saveItem(item, desc);
+            this.itemService.saveItem(item, desc, paramData);
             return ResponseEntity.status(HttpStatus.CREATED).build();
         } catch (Exception e) {
             if (LOGGER.isErrorEnabled()) {
@@ -54,6 +54,21 @@ public class ItemController {
         } catch (Exception e) {
 
         }
+        return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(null);
+
+    }
+
+    @RequestMapping(method = RequestMethod.PUT)
+    public ResponseEntity<Void> updateItem(Item item, @RequestParam("desc")String desc) {
+
+        try {
+
+            this.itemService.updateItem(item, desc);
+            return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
         return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(null);
 
     }

@@ -70,7 +70,9 @@ public abstract class BaseService<T extends BasePojo> {
     }
 
     public T queryOne(T t) {
-        return this.getMapper().select(t).get(0);
+        //return this.getMapper().select(t).get(0);
+        T result = this.getMapper().selectOne(t);
+        return result;
     }
 
     public Integer save(T t) {
