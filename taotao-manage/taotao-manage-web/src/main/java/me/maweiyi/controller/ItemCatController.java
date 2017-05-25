@@ -1,5 +1,6 @@
 package me.maweiyi.controller;
 
+import bean.ItemCatResult;
 import me.maweiyi.pojo.ItemCat;
 import me.maweiyi.service.ItemCatService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -33,6 +34,20 @@ public class ItemCatController {
         } catch (Exception e) {
 
         }
+        return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(null);
+    }
+
+    @RequestMapping(value = "all", method = RequestMethod.GET)
+    public ResponseEntity<ItemCatResult> queryItemCatAll() {
+        try {
+
+            ItemCatResult itemCatResult = this.itemCatService.queryItemCatAll();
+            return ResponseEntity.ok(itemCatResult);
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
         return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(null);
     }
 }
