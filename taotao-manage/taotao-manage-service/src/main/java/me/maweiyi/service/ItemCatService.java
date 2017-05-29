@@ -2,10 +2,7 @@ package me.maweiyi.service;
 
 import bean.ItemCatData;
 import bean.ItemCatResult;
-import com.github.abel533.mapper.Mapper;
-import me.maweiyi.mapper.ItemCatMapper;
 import me.maweiyi.pojo.ItemCat;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
