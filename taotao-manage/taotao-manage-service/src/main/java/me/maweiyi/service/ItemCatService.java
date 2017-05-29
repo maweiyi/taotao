@@ -99,7 +99,7 @@ public class ItemCatService extends BaseService<ItemCat> {
             }
             // 装载到返回对象中
             itemCatResult.getItemCats().add((itemCatData1));
-            // 一级类目只能有14个。在企业中，不能自己决定这样做，需要跟项目经理，或者产品经理汇报，发邮件
+            // 一级类目只能有14个
             if (itemCatResult.getItemCats().size() >= 14) {
                 break;
             }
