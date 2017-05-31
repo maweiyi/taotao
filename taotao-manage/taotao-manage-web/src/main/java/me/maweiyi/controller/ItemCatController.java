@@ -1,6 +1,8 @@
 package me.maweiyi.controller;
 
 import bean.ItemCatResult;
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import me.maweiyi.pojo.ItemCat;
 import me.maweiyi.service.ItemCatService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,6 +13,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import javax.servlet.http.HttpServletRequest;
+import java.io.UnsupportedEncodingException;
 import java.util.List;
 
 /**
@@ -23,6 +27,8 @@ public class ItemCatController {
 
     @Autowired
     private ItemCatService itemCatService;
+
+    private static final ObjectMapper MAPPER = new ObjectMapper();
 
 
     @RequestMapping(method = RequestMethod.GET)
@@ -50,4 +56,25 @@ public class ItemCatController {
 
         return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(null);
     }
+
+    /*@RequestMapping(value = "all", method = RequestMethod.GET)
+    public ResponseEntity<String> queryItemCatAll(HttpServletRequest request) {
+
+        try {
+            ItemCatResult itemCatResult = this.itemCatService.queryItemCatAll();
+            String callback = request.getParameter("callback");
+            String result = callback + "(" + MAPPER.writeValueAsString(itemCatResult) + ")";
+
+
+            return ResponseEntity.ok(new String(result.getBytes(), "UTF-8"));
+        } catch (JsonProcessingException e) {
+            e.printStackTrace();
+        } catch (UnsupportedEncodingException e) {
+            e.printStackTrace();
+        }
+        return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(null);
+
+
+    }*/
+
 }
