@@ -1,7 +1,7 @@
 package me.maweiyi.controller;
 
 import com.github.pagehelper.PageInfo;
-import me.maweiyi.bean.EasyUIResult;
+import bean.EasyUIResult;
 import me.maweiyi.pojo.ItemParam;
 import me.maweiyi.service.ItemParamService;
 import org.springframework.beans.factory.annotation.Autowired;
