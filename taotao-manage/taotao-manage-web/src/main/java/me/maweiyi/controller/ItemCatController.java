@@ -3,12 +3,15 @@ package me.maweiyi.controller;
 import bean.ItemCatResult;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import me.maweiyi.pojo.Item;
 import me.maweiyi.pojo.ItemCat;
 import me.maweiyi.service.ItemCatService;
+import me.maweiyi.service.ItemService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -27,6 +30,9 @@ public class ItemCatController {
 
     @Autowired
     private ItemCatService itemCatService;
+
+    @Autowired
+    private ItemService itemService;
 
     private static final ObjectMapper MAPPER = new ObjectMapper();
 
@@ -50,6 +56,20 @@ public class ItemCatController {
             ItemCatResult itemCatResult = this.itemCatService.queryItemCatAll();
             return ResponseEntity.ok(itemCatResult);
 
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(null);
+    }
+
+    @RequestMapping(value = "{itemId}", method = RequestMethod.GET)
+    public ResponseEntity<Item> queryItemById(@PathVariable("itemId") Long itemId) {
+
+        try {
+
+            Item item = this.itemService.queryById(itemId);
+            return ResponseEntity.ok(item);
         } catch (Exception e) {
             e.printStackTrace();
         }
