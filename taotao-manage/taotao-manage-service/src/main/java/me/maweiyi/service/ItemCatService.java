@@ -2,9 +2,14 @@ package me.maweiyi.service;
 
 import bean.ItemCatData;
 import bean.ItemCatResult;
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import me.maweiyi.pojo.ItemCat;
+import org.apache.commons.lang3.StringUtils;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -26,6 +31,12 @@ public class ItemCatService extends BaseService<ItemCat> {
 
         return this.itemCatMapper;
     }*/
+    private static String MANAGE_TAOTAO_ITEMCAT = "MANAGE_TAOTAO_ITEMCAT";
+
+    @Autowired
+    private RedisService redisService;
+
+    private static final ObjectMapper MAPPER = new ObjectMapper();
 
     /**
      * 根据父id查询商品类目
@@ -41,6 +52,16 @@ public class ItemCatService extends BaseService<ItemCat> {
     }
 
     public ItemCatResult queryItemCatAll() {
+        //从缓存中命中,如果命中则返回
+        try {
+
+            String jsonData = this.redisService.get(this.MANAGE_TAOTAO_ITEMCAT);
+            if (StringUtils.isNotBlank(jsonData)) {
+                return MAPPER.readValue(jsonData, ItemCatResult.class);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
 
         ItemCatResult itemCatResult = new ItemCatResult();
         // 查询所有的类目数据，待用
@@ -102,7 +123,14 @@ public class ItemCatService extends BaseService<ItemCat> {
             }
         }
         // 把数据放到缓存中
-
+        try {
+            String jsonData = MAPPER.writeValueAsString(itemCatResult);
+            if (StringUtils.isNotBlank(jsonData)) {
+                this.redisService.set(MANAGE_TAOTAO_ITEMCAT, jsonData, 60 * 60 * 24 * 30);
+            }
+        } catch (JsonProcessingException e) {
+            e.printStackTrace();
+        }
         return itemCatResult;
 
     }
