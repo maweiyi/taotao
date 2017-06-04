@@ -1,7 +1,7 @@
 package me.maweiyi.controller;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import bean.PicUploadResult;
+import me.maweiyi.bean.PicUploadResult;
 import me.maweiyi.service.PropertiesService;
 import org.apache.commons.lang3.RandomUtils;
 import org.apache.commons.lang3.StringUtils;

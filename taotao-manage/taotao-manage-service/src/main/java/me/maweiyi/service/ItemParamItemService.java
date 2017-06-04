@@ -10,4 +10,10 @@ import org.springframework.stereotype.Service;
 @Service
 public class ItemParamItemService extends BaseService<ItemParamItem> {
 
+    public ItemParamItem queryItemParamItemByItemId(Long itemId) {
+        ItemParamItem param = new ItemParamItem();
+        param.setItemId(itemId);
+        ItemParamItem itemParamItem = super.queryOne(param);
+        return itemParamItem;
+    }
 }

@@ -1,15 +1,12 @@
 package me.maweiyi.service;
 
 
-import bean.EasyUIResult;
+import me.maweiyi.bean.EasyUIResult;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import me.maweiyi.pojo.Content;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.http.client.config.RequestConfig;
-import org.apache.http.client.methods.CloseableHttpResponse;
-import org.apache.http.client.methods.HttpGet;
 import org.apache.http.impl.client.CloseableHttpClient;
-import org.apache.http.util.EntityUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;

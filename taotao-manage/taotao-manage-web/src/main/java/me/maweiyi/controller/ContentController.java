@@ -2,7 +2,7 @@ package me.maweiyi.controller;
 
 
 import com.github.pagehelper.PageInfo;
-import bean.EasyUIResult;
+import me.maweiyi.bean.EasyUIResult;
 import me.maweiyi.pojo.Content;
 import me.maweiyi.service.ContentService;
 import org.springframework.http.HttpStatus;

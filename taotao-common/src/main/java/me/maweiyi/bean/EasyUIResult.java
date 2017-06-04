@@ -1,4 +1,4 @@
-package bean;
+package me.maweiyi.bean;
 
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;

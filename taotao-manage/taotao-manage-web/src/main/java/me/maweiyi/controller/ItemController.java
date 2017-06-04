@@ -1,7 +1,7 @@
 package me.maweiyi.controller;
 
 import com.github.pagehelper.PageInfo;
-import bean.EasyUIResult;
+import me.maweiyi.bean.EasyUIResult;
 import me.maweiyi.pojo.Item;
 import me.maweiyi.service.ItemService;
 import org.slf4j.Logger;

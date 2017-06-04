@@ -1,4 +1,4 @@
-package bean;
+package me.maweiyi.bean;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 

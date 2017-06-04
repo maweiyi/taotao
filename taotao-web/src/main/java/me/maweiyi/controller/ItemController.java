@@ -23,7 +23,14 @@ public class ItemController {
     public ModelAndView toItemInfo(@PathVariable("itemId") Long itemId) {
         ModelAndView mv = new ModelAndView("item");
         mv.addObject("item", this.itemService.queryItemInfoByItemId(itemId));
+
+        //模型中封装商品描述数据
+        mv.addObject("itemDesc", this.itemService.queryItemDescByItemId(itemId));
+
+        mv.addObject("itemDesc", this.itemService.queryItemParamItemByItemId(itemId));
         return mv;
 
     }
+
+
 }

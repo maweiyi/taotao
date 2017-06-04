@@ -5768,7 +5768,7 @@ function cancelAllUsedGiftCards(giftCardType) {
 		jQuery.ajax( {
 			type : "POST",
 			dataType : "json",
-			url : "/service/order/submit",
+			url : "/me.maweiyi.bean.service/order/submit",
 			data : $("#orderForm").serialize(),
 			cache : false,
 			success : function(result) {

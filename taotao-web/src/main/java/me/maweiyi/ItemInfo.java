@@ -1,4 +1,4 @@
-package me.maweiyi.bean;
+package me.maweiyi;
 
 import me.maweiyi.pojo.Item;
 import org.apache.commons.lang3.StringUtils;

@@ -1,4 +1,4 @@
-package bean;
+package me.maweiyi.bean;
 
 /**
  * Created by maweiyi on 5/18/17.
