@@ -12,7 +12,6 @@
         <module>taotao-manage</module>
         <module>taotao-common</module>
         <module>taotao-web</module>
-        <module>taotao-sso</module>
     </modules>
 
     <properties>
