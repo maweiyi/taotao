@@ -27,16 +27,6 @@ public class UserLoginHandlerInterceptor implements HandlerInterceptor {
         //根据ticket查询用户信息
 
         //如果user不为空，则表示用户已经登陆过
-        /*String ticket = CookieUtils.getCookieValue(request, "TI_CKET");
-        if (StringUtils.isBlank(ticket)) {
-            response.sendRedirect(SSO_TAOTAO_URL + "/page/login");
-        }
-
-        //User user = this.userService.queryUserByTicket(ticket);
-        //if(user == null) {
-        //response.sendRedirect(SSO_TAOTAO_URL + "/page/login");
-        //}
-        return false;*/
         String ticket = CookieUtils.getCookieValue(request, "TT_TICKET");
 
         // 判断ticket如果为空，则表示用户未登录
