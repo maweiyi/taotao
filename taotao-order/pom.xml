@@ -6,9 +6,9 @@
         <version>1.0-SNAPSHOT</version>
     </parent>
     <modelVersion>4.0.0</modelVersion>
-    <artifactId>taotao-sso</artifactId>
+    <artifactId>taotao-order</artifactId>
     <packaging>war</packaging>
-    <name>taotao-sso Maven Webapp</name>
+    <name>taotao-order Maven Webapp</name>
     <url>http://maven.apache.org</url>
     <dependencies>
         <dependency>
@@ -17,6 +17,7 @@
             <version>3.8.1</version>
             <scope>test</scope>
         </dependency>
+
         <dependency>
             <groupId>org.springframework</groupId>
             <artifactId>spring-webmvc</artifactId>
@@ -143,7 +144,7 @@
         </dependency>
     </dependencies>
     <!--build>
-        <finalName>taotao-sso</finalName>
+        <finalName>taotao-order</finalName>
     </build-->
     <build>
         <plugins>
@@ -152,7 +153,7 @@
                 <groupId>org.apache.tomcat.maven</groupId>
                 <artifactId>tomcat7-maven-plugin</artifactId>
                 <configuration>
-                    <port>8084</port>
+                    <port>8085</port>
                     <path>/</path>
                 </configuration>
             </plugin>

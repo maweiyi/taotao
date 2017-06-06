@@ -8,19 +8,19 @@
 
 	<!-- 注解驱动 -->
 	<mvc:annotation-driven>
-		<!--mvc:message-converters-->
+		<mvc:message-converters>
 			<!--配置文本转换器-->
 			<!--bean class="org.springframework.http.converter.StringHttpMessageConverter">
 				<constructor-arg index="0" value="UTF-8" />
-			</bean>
-			<bean claCallbackMappingJackson2HttpMessageConverterrter">
+			</bean-->
+			<bean class="me.maweiyi.convert.CallbackMappingJackson2HttpMessageConverter">
 				<property name="callbackName" value="callback" />
 			</bean>
-		</mvc:message-converters-->
+		</mvc:message-converters>
 	</mvc:annotation-driven>
 
 	<!-- 配置扫描controller -->
-	<context:component-scan base-package="me.maweiyi.sso.controller" />
+	<context:component-scan base-package="me.maweiyi.controller" />
 
 	<!-- Example: prefix="/WEB-INF/jsp/", suffix=".jsp", viewname="test" -> "/WEB-INF/jsp/test.jsp" -->
 	<!-- 配置视图解析器 -->
